@@ -1,4 +1,6 @@
-// pages/food/food.js
+// pages/buy/buy.js
+const app = getApp()
+
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getBannerAndCat();
   },
 
   /**
@@ -62,5 +64,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getBannerAndCat: function () {
+    var that = this;
+    wx.request({
+      url: app.buildUrl("/food/index"),
+      header: app.getRequestHeader(),
+      success: function (res) {
+        console.log('res', res)
+        var resp = res.data;
+        if( resp.code != 200 ){
+          app.alert({ 'con  tent': resp.msg});
+          return;
+        }
+        that.setData({
+          banners: resp.data.banner_list,
+          categories: resp.data.cat_list
+        })
+      }
+    })
   }
+
 })

@@ -1,0 +1,57 @@
+<!--pages/main/main.wxml-->
+<view>pages/main/main.wxml</view>
+<view class="container">
+  <view class="block confirm-btn">
+    <view class="block-title">购买记录</view>
+  </view>
+
+  <view  class="block confirm-btn">
+    <view class="block-title">洗后晒图</view>
+  </view>
+
+  <view class="block">
+    <view class="block-title">清洗范围</view>
+  </view>
+
+  <view  class="block">
+    <view class="block-title">品质专业</view>
+  </view>
+
+  <view  class="block">
+    <view class="block-title">
+    工序严格
+    </view >
+  </view>
+
+  <view  class="block">
+    <view class="block-title">
+    取送放心
+    </view>
+  </view>
+
+  <view  class="block">
+    <view class="block-title">常见问题和说明</view>
+    <view>
+      <view class="block-sub-title">1.哪些鞋子不可以清洗？</view>
+      <view class="block-sub-content">
+        雪地靴；带电子元件的鞋；严重破损（开胶、破洞、断底、粉化、爆漆等）；严重褪色或染色的鞋。
+      </view>
+    </view>
+
+    <view>
+      <view class="block-sub-title">2.清洗周期是多久？</view>
+      <view class="block-sub-content">为确保洗护质量和时效性，我们承诺鞋子进厂后48小时完成洗护寄出，配送周期为2-4天，7日内可送回。
+      </view>
+    </view>
+
+    <view>
+      <view class="block-sub-title">3.所有的污渍都可以去除吗？</view>
+      <view class="block-sub-content">清洗过程中使用专业环保材料，在不损坏鞋子材质的情况下可以清除绝大部分污渍。但是存在部分污渍无法彻底清除，过度清除有可能会损坏鞋子材质。
+      </view>
+    </view>
+
+    <button bindtap="toBuy">
+      立即购买
+    </button>
+  </view>
+</view>  

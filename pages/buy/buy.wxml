@@ -1,0 +1,15 @@
+<!--pages/buy/buy.wxml-->
+<text>pages/buy/buy.wxml</text>
+<view class="container">
+  <view class="address-content">
+    <view>请添加取件地址</view>
+  </view>
+  <view>
+    <view>
+    </view>
+  </view>
+  <view>
+    <view></view>
+    <button>提交订单</button>
+  </view>
+</view>

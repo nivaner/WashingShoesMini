@@ -53,7 +53,7 @@ App({
   getRequestHeader: function () {
     return {
       'content-type': 'application/x-www-form-urlencoded',
-      // 'Authorization': this.getCache("token")
+      'Authorization': this.getCache("token")
     }
   },
   alert: function (params) {

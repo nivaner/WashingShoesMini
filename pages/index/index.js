@@ -10,8 +10,8 @@ Page({
     regFlag: true
   },
   goToIndex: function () {
-    wx.switchTab({
-      url: '/pages/food/food',
+    wx.navigateTo({
+      url: '/pages/main/main',
     });
   },
   //事件处理函数
