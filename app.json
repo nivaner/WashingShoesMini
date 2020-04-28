@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/main/main",
     "pages/buy/buy",
-    "pages/index/index",
-    "pages/main/main"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

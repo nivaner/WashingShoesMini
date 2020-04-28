@@ -1,13 +1,49 @@
 <!--pages/buy/buy.wxml-->
-<text>pages/buy/buy.wxml</text>
-<view class="container">
-  <view class="address-content">
-    <view>请添加取件地址</view>
+<view class="">
+  <view class="bg-white padding">
+    <view class="flex justify-between" bindtap='chooseAddress'>
+      <view>
+        <text class="cuIcon-locationfill text-orange"></text>
+        <text>阿强</text>
+      </view>
+      <view>
+        <text>18752066920</text>
+        <text class="cuIcon-right"></text>
+      </view>
+    </view>
+    <view class="text-df">
+      <text>上海市</text>
+    </view>
+    <view class="text-sm">
+      xxxx</view>
   </view>
-  <view>
-    <view>
+  <form>
+    <view class="margin-bottom bg-gray"></view>
+    <view class="cu-form-group">
+      <view class="title">商品金额</view>
+      <view>￥{{orderPrice}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">运费（往返）</view>
+      <view>￥{{freight}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">限时包邮</view>
+      <view class="text-red">-￥{{freight}}</view>
+    </view>
+    <view class="margin-bottom"></view>
+  </form>
+
+  <view class="bg-white padding">
+    <view class="text-sm">
+      <view>买家须知：</view>
+      <view class="padding-tb-sm">1.基础洗护服务内容：整体清洁，干燥杀菌，专用包装</view>
+      <view class="">2.以下鞋子不在洗护范围；雪地靴；带电子元件的鞋；严重破损（开胶、破洞、断底、粉化、爆漆等）；严重褪色或染色的鞋。</view>
+      <view class="padding-tb-sm">3.寄件时请勿使用原装鞋盒及配件（如掉包扣，鞋撑等）。鞋子洗后将用定制包装寄回。原盒配件恕不退回</view>
+      <view class="">4.请寄送整双鞋子。</view>
     </view>
   </view>
+
   <view>
     <view></view>
     <button>提交订单</button>

@@ -1,52 +1,244 @@
 <!--pages/main/main.wxml-->
-<view>pages/main/main.wxml</view>
-<view class="container">
+<view class="padding bg-white">
   <view class="block confirm-btn">
-    <view class="block-title">购买记录</view>
-  </view>
-
-  <view  class="block confirm-btn">
-    <view class="block-title">洗后晒图</view>
-  </view>
-
-  <view class="block">
-    <view class="block-title">清洗范围</view>
-  </view>
-
-  <view  class="block">
-    <view class="block-title">品质专业</view>
-  </view>
-
-  <view  class="block">
-    <view class="block-title">
-    工序严格
-    </view >
-  </view>
-
-  <view  class="block">
-    <view class="block-title">
-    取送放心
+    <view class="flex justify-between">
+      <view class="text-lg text-black">购买记录</view>
+      <view class="text-sm text-gray">
+        <text>{{buyNum}}人买过</text>
+        <text class="cuIcon-right"></text>
+      </view>
+    </view>
+    <view class="padding-tb-sm">
+      <view class="flex justify-between text-sm padding bg-gray">
+        <view class="flex-sub">img</view>
+        <view class="flex-sub">name</view>
+        <view class="flex-treble">清洗1双</view>
+        <view class="flex-sub">22分钟</view>
+      </view>
     </view>
   </view>
 
-  <view  class="block">
-    <view class="block-title">常见问题和说明</view>
+  <view class="block confirm-btn padding-tb">
+    <view class="flex justify-between">
+      <view class="text-lg text-black">洗后晒图</view>
+      <view class="text-sm text-gray">
+        <text>查看全部</text>
+        <text class="cuIcon-right"></text>
+      </view>
+    </view>
     <view>
-      <view class="block-sub-title">1.哪些鞋子不可以清洗？</view>
-      <view class="block-sub-content">
+      <view class="bg-white padding-tb">
+        <view class="grid col-4 grid-square">
+          <view class="bg-img" wx:for="{{4}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="block">
+    <view class="flex justify-between">
+      <view class="text-lg text-black">不在清洗范围的鞋类</view>
+    </view>
+    <view class="padding-tb-sm">
+      <view class="flex justify-between text-sm padding">
+        <view class="flex-sub">
+          <view>图片</view>
+          <view class="text-xs">电子元件</view>
+        </view>
+        <view class="flex-sub">
+          <view>图片</view>
+          <view class="text-xs">雪地靴</view>
+        </view>
+        <view class="flex-sub">
+          <view>图片</view>
+          <view class="text-xs">严重褪色</view>
+        </view>
+        <view class="flex-sub">
+          <view>图片</view>
+          <view class="text-xs">严重破损</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="block padding-tb">
+    <view class="flex justify-between">
+      <view class="text-lg text-black">品质专业</view>
+    </view>
+    <view class="">
+      <view class="flex bg-gray margin-tb-sm">
+        <view class="flex-twice ">
+          <view></view>
+          图片
+        </view>
+        <view class="flex-treble padding-tb-lg padding-lr-sm">
+          <view class="text-df margin-tb-xs">
+            10年+护理经验技师
+          </view>
+          <view class="text-xs">
+            工厂专业的培训与考核
+          </view>
+          <view class="text-xs">
+            平均从业经验10年以上
+          </view>
+        </view>
+      </view>
+      <view class="flex bg-gray margin-tb-sm">
+        <view class="flex-twice ">
+          <view></view>
+          图片
+        </view>
+        <view class="flex-treble padding-tb-lg padding-lr-sm">
+          <view class="text-df margin-tb-xs">
+            智能洗护，全程跟踪
+          </view>
+          <view class="text-xs">
+            每只鞋对应唯一吊扣
+          </view>
+          <view class="text-xs">
+            洗护过程全程跟踪
+          </view>
+        </view>
+      </view>
+      <view class="flex bg-gray margin-tb-sm">
+        <view class="flex-twice ">
+          <view></view>
+          图片
+        </view>
+        <view class="flex-treble padding-tb-lg padding-lr-sm">
+          <view class="text-df margin-tb-xs">
+            进口设备，分类洗护
+          </view>
+          <view class="text-xs">
+            进口清洗设备 + 洗剂
+          </view>
+          <view class="text-xs">
+            不同材质选择不同洗剂与工具
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="block">
+    <view class="flex justify-between">
+      <view class="text-lg text-black">工序严格</view>
+    </view>
+    <view class="cu-timeline">
+     <view class="cu-time">开始</view>
+      <view class="cu-item text-blue">
+        <view class="content">
+          <view>
+            <view class="text-df">
+              进厂
+            </view>
+            <view class="text-xs">
+              比对订单信息和物流信息是否一致
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cu-item text-blue">
+        <view class="content">
+          <view>
+            <view class="text-df">
+              拆箱，绑扣，拍照
+            </view>
+            <view class="text-xs">
+              高清监控下拆箱
+            </view>
+             <view class="text-xs">
+              每只鞋绑定唯一吊扣
+            </view>
+             <view class="text-xs">
+              清洗前状况拍照留存
+            </view>
+          </view>
+        </view>
+      </view>
+       <view class="cu-item text-blue">
+        <view class="content">
+          <view>
+            <view class="text-df">
+              干燥消毒
+            </view>
+            <view class="text-xs">
+              干燥间静置风干
+            </view>
+             <view class="text-xs">
+              专用杀菌设备进行消毒
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cu-item text-blue">
+        <view class="content">
+          <view>
+            <view class="text-df">
+              质检
+            </view>
+            <view class="text-xs">
+              质检员逐一检查每双鞋清洗结果
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cu-item text-blue">
+        <view class="content">
+          <view>
+            <view class="text-df">
+              拍照包装
+            </view>
+            <view class="text-xs">
+              拍照记录鞋出厂前状态
+            </view>
+             <view class="text-xs">
+              定制包装打包封装
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class="block padding-tb">
+   <view class="flex justify-between">
+      <view class="text-lg text-black">取送放心</view>
+    </view>
+     <view class="">
+          <view class="text-df margin-tb-xs">
+            进口设备，分类洗护
+          </view>
+          <view class="text-xs">
+            进口清洗设备 + 洗剂
+          </view>
+          <view class="text-xs">
+            不同材质选择不同洗剂与工具
+          </view>
+        </view>
+  </view> -->
+
+  <view class="block padding-tb">
+     <view class="flex justify-between">
+      <view class="text-lg text-black">常见问题和说明</view>
+    </view>
+    <view>
+      <view class="text-sm padding-tb-sm">1.哪些鞋子不可以清洗？</view>
+      <view class="text-xs  padding-bottom-sm">
         雪地靴；带电子元件的鞋；严重破损（开胶、破洞、断底、粉化、爆漆等）；严重褪色或染色的鞋。
       </view>
     </view>
 
     <view>
-      <view class="block-sub-title">2.清洗周期是多久？</view>
-      <view class="block-sub-content">为确保洗护质量和时效性，我们承诺鞋子进厂后48小时完成洗护寄出，配送周期为2-4天，7日内可送回。
+      <view class="text-sm  padding-tb-sm">2.清洗周期是多久？</view>
+      <view class="text-xs  padding-bottom-sm">为确保洗护质量和时效性，我们承诺鞋子进厂后48小时完成洗护寄出，配送周期为2-4天，7日内可送回。
       </view>
     </view>
 
     <view>
-      <view class="block-sub-title">3.所有的污渍都可以去除吗？</view>
-      <view class="block-sub-content">清洗过程中使用专业环保材料，在不损坏鞋子材质的情况下可以清除绝大部分污渍。但是存在部分污渍无法彻底清除，过度清除有可能会损坏鞋子材质。
+      <view class="text-sm padding-tb-sm">3.所有的污渍都可以去除吗？</view>
+      <view class="text-xs padding-bottom-sm">清洗过程中使用专业环保材料，在不损坏鞋子材质的情况下可以清除绝大部分污渍。但是存在部分污渍无法彻底清除，过度清除有可能会损坏鞋子材质。
       </view>
     </view>
 
@@ -54,4 +246,4 @@
       立即购买
     </button>
   </view>
-</view>  
+</view>
