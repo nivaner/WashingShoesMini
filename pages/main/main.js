@@ -66,11 +66,15 @@ Page({
 
   // 去购买 
   toBuy: function (){
-    wx.navigateTo({
-      url: '/pages/buy/buy',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+    wx.redirectTo({
+      url: '/pages/buy/buy'
+    })
+  },
+
+  // 去我的页面 
+  toMe: function(){
+    wx.redirectTo({
+      url: '/pages/my/index',
     })
   }
 })

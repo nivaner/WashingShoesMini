@@ -22,11 +22,15 @@
                 </view>
             </view>
             <view >
-                <scroll-view class="goods-img-container" scroll-x="true">
+              <view wx:for="{{item.goods_list}}" wx:for-item="itemGood">
+                <view>洗鞋数量</view>
+                <view>{{itemGood.quantity}}</view>
+              </view>
+                <!-- <scroll-view class="goods-img-container" scroll-x="true">
                     <view class="img-box" wx:for="{{item.goods_list}}" wx:for-item="itemGood">
                         <image src="{{itemGood.pic_url}}" class="goods-img"></image>
                     </view>
-                </scroll-view>
+                </scroll-view> -->
             </view>
             <view class="price-box">
                 <view class="total-price">合计：¥ {{item.total_price}}</view>

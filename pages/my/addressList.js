@@ -23,6 +23,7 @@ Page({
                     app.alert({"content": resp.msg});
                     return;
                 }
+              console.log('resp.data.list', resp.data.list)
                 that.setData({
                    list:resp.data.list
                 });
@@ -46,6 +47,7 @@ Page({
                     app.alert({"content": resp.msg});
                     return;
                 }
+                console.log(resp.data.list)
                 that.setData({
                    list:resp.data.list
                 });

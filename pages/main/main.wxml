@@ -1,5 +1,5 @@
 <!--pages/main/main.wxml-->
-<view class="padding bg-white">
+<view class="padding bg-white container">
   <view class="block confirm-btn">
     <view class="flex justify-between">
       <view class="text-lg text-black">购买记录</view>
@@ -242,8 +242,34 @@
       </view>
     </view>
 
-    <button bindtap="toBuy">
+    <!-- <button bindtap="toBuy">
       立即购买
-    </button>
+    </button> -->
+  </view>
+</view>
+
+
+<view class="cu-bar tabbar  bg-white shadow foot">
+  <view class="action text-blue">
+    <view class="cuIcon-homefill"></view> 首页
+  </view>
+  <!-- <view class="action text-gray">
+    <view class="cuIcon-similar"></view> 订单
+  </view> -->
+   <view class="action text-gray add-action" bindtap="toBuy">
+      <button class="cu-btn cuIcon-add bg-blue shadow" ></button>
+      去下单
+    </view>
+  <!-- <view class="action text-gray">
+    <view class="cuIcon-cart">
+      <view class="cu-tag badge">99</view>
+    </view>
+    购物车
+  </view> -->
+  <view class="action text-gray" bindtap="toMe">
+    <view class="cuIcon-my">
+      <view class="cu-tag badge"></view>
+    </view>
+    我的
   </view>
 </view>

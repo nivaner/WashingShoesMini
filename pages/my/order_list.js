@@ -3,6 +3,7 @@ Page({
     data: {
         order_list:[],
         statusType: ["待付款", "待发货", "待确认", "待评价", "已完成","已关闭"],
+      // statusType: ["全部订单", "已完成"],
         status:[ "-8","-7","-6","-5","1","0" ],
         currentType: 0,
         tabClass: ["", "", "", "", "", ""]

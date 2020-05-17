@@ -1,8 +1,15 @@
 {
   "pages": [
+    "pages/my/order_list",
     "pages/main/main",
     "pages/buy/buy",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/my/order_info",
+    "pages/my/addressList",
+    "pages/my/addressSet",
+    "pages/my/comment",
+    "pages/my/commentList",
+    "pages/my/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

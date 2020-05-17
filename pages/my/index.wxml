@@ -1,11 +1,12 @@
 <view class="container">
-	<view class="userinfo">
-		<image wx:if="{{user_info && user_info.avatar_url}}" class="userinfo-avatar" src="{{ user_info.avatar_url }}" background-size="cover"></image>
-		<text class="userinfo-nickname">{{ user_info.nickname }}（手机：--）</text>
-	</view>
+  <view class="userinfo bg-blue">
+    <image wx:if="{{user_info && user_info.avatar_url}}" class="userinfo-avatar" src="{{ user_info.avatar_url }}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{ user_info.nickname }}（手机：--）</text>
+  </view>
   <view style="height:20rpx;background: #eee;width:100%;"></view>
   <view class="my-item">
-    <navigator url="/pages/my/order_list" hover-class="navigator-hover">我的订单</navigator>
+    <navigator url="/pages/my/order_list" hover-class="navigator-hover">
+    我的订单</navigator>
   </view>
   <view class="my-item">
     <navigator url="/pages/my/addressList" hover-class="navigator-hover">我的收货地址</navigator>
@@ -18,4 +19,28 @@
 
   <view style="height:20rpx;background: #eee;width:100%;"></view>
 
+  <view class="cu-bar tabbar  bg-white shadow foot">
+    <view class="action text-gray" bindtap="toHome">
+      <view class="cuIcon-homefill"></view> 首页
+    </view>
+    <!-- <view class="action text-gray">
+    <view class="cuIcon-similar"></view> 订单
+  </view> -->
+    <view class="action text-gray add-action" bindtap="toBuy">
+      <button class="cu-btn cuIcon-add bg-blue shadow"></button>
+      去下单
+    </view>
+    <!-- <view class="action text-gray">
+    <view class="cuIcon-cart">
+      <view class="cu-tag badge">99</view>
+    </view>
+    购物车
+  </view> -->
+    <view class="action text-blue">
+      <view class="cuIcon-my">
+        <view class="cu-tag badge"></view>
+      </view>
+      我的
+    </view>
+  </view>
 </view>
