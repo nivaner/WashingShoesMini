@@ -71,6 +71,20 @@
 					"id": -1,
 					"name": "pages/main/main",
 					"pathName": "pages/my/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/order_list",
+					"pathName": "pages/my/order_list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/order_info",
+					"pathName": "pages/my/order_info",
 					"scene": null
 				}
 			]

@@ -1,5 +1,6 @@
 // pages/buy/buy.js
 const app = getApp()
+const _ = require('../../utils/lodash');
 
 Page({
 
@@ -17,98 +18,155 @@ Page({
     pay_price: "0.00",
     total_price: "0.00",
     discount: "0.00",
-    promotionList: [{
-        id: 1,
-        desc: '满30-30'
-      },
-      {
-        id: 2,
-        desc: '满70-40'
-      }, {
-        id: 3,
-        desc: '满110-60'
-      }, 
-      // {
-      //   id: 4,
-      //   desc: '免运费'
-      // }, {
-      //   id: 5,
-      //   desc: '满两双-10元'
-      // }, {
-      //   id: 6,
-      //   desc: '满三双-20'
-      // }
-    ]
+    promotionList: null,
+    promotionId: null,
+    storeList: null,
+    storeInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.getWashShoesPrice();
-    this.getCartList()
+    this.getCartList();
+    // this.getPromotion();
+    this.getStoreList();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
 
-  // 获取洗鞋价格 
-  getWashShoesPrice: function() {
+  // 获取门店信息
+  getStoreList: function () {
     var that = this;
     wx.request({
-      url: app.buildUrl("/food/search"),
+      url: app.buildUrl("/store/index"),
       header: app.getRequestHeader(),
-      success: function(res) {
+      success: function (res) {
+        var resp = res.data;
+        if (resp.code != 200) {
+          app.alert({
+            'content': resp.msg
+          });
+          return;
+        }
+
+        that.setData({
+          storeList: resp.data.list
+        })
+
+      }
+    })
+  },
+
+  // 获取促销
+  getPromotion: function () {
+    var that = this;
+    wx.request({
+      url: app.buildUrl("/promotion/index"),
+      header: app.getRequestHeader(),
+      success: function (res) {
         console.log('res', res);
         var resp = res.data;
         if (resp.code != 200) {
           app.alert({
-            'con  tent': resp.msg
+            'content': resp.msg
+          });
+          return;
+        }
+        let promotionId = resp.data.id;
+        if (promotionId == 1) {
+          that.setData({
+            promotionList: [{
+                id: 1,
+                desc: '满30-30元'
+              },
+              {
+                id: 2,
+                desc: '满70-40元'
+              }, {
+                id: 3,
+                desc: '满110-60元'
+              }
+            ],
+            promotionId
+          })
+        } else if (promotionId == 2){
+          that.setData({
+            promotionList: [{
+              id: 4,
+              desc: '免运费'
+            }, {
+              id: 5,
+              desc: '满两双-10元'
+            }, {
+              id: 6,
+              desc: '满三双-20元'
+            }],
+            promotionId
+          })
+        }
+      }
+    })
+  },
+
+  // 获取洗鞋价格 
+  getWashShoesPrice: function () {
+    var that = this;
+    wx.request({
+      url: app.buildUrl("/food/search"),
+      header: app.getRequestHeader(),
+      success: function (res) {
+        console.log('res', res);
+        var resp = res.data;
+        if (resp.code != 200) {
+          app.alert({
+            'content': resp.msg
           });
           return;
         }
@@ -124,33 +182,33 @@ Page({
   },
 
   // 选择地址
-  chooseAddress: function() {
+  chooseAddress: function () {
     console.log('chooseAddress')
     // TODO: 判断是选择地址页面还是地址管理页
     wx.navigateTo({
       url: '/pages/my/addressList',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+      success: function (res) {},
+      fail: function (res) {},
+      complete: function (res) {},
     })
   },
 
   // 去我的页面 
-  toMe: function() {
+  toMe: function () {
     wx.redirectTo({
       url: '/pages/my/index',
     })
   },
 
   // 去我的首页
-  toHome: function() {
+  toHome: function () {
     wx.redirectTo({
       url: '/pages/main/main',
     })
   },
 
   // 减数量
-  minusNum: function() {
+  minusNum: function () {
     let _number = this.data.number;
     console.log('_number', _number)
     if (_number > 1) {
@@ -163,7 +221,7 @@ Page({
   },
 
   // 加商品
-  addNum: function() {
+  addNum: function () {
     let _number = this.data.number;
     _number++;
     this.setCart(_number)
@@ -172,7 +230,7 @@ Page({
     })
   },
 
-  setPageData: function(saveHidden, total, allSelect, noSelect, list) {
+  setPageData: function (saveHidden, total, allSelect, noSelect, list) {
     this.setData({
       list: list,
       saveHidden: saveHidden,
@@ -182,12 +240,12 @@ Page({
     });
   },
 
-  getCartList: function() {
+  getCartList: function () {
     var that = this;
     wx.request({
       url: app.buildUrl("/cart/index"),
       header: app.getRequestHeader(),
-      success: function(res) {
+      success: function (res) {
         var resp = res.data;
         if (resp.code != 200) {
           app.alert({
@@ -195,27 +253,29 @@ Page({
           });
           return;
         }
-
-        let {
-          number,
-          active
-        } = resp.data.list[0]
-        if (active) {
-          that.setData({
-            number: number,
-            totalPrice: 0.00,
-          });
-        } else [
-          that.setData({
-            number: 0
-          })
-        ]
-
+        console.log(resp.data.list)
+        if(resp.data.list.length){
+          let {
+            number,
+            active
+          } = resp.data.list[0]
+          if (active) {
+            that.setData({
+              number: number,
+              totalPrice: 0.00,
+            });
+          } else [
+            that.setData({
+              number: 0
+            })
+          ]
+        }
+        console.log('cart getOrderInfo')
         that.getOrderInfo();
       }
     });
   },
-  setCart: function(number) {
+  setCart: function (number) {
     var that = this;
     let _id = this.data.goodsId;
     if (!_id) {
@@ -233,11 +293,14 @@ Page({
       header: app.getRequestHeader(),
       method: 'POST',
       data: data,
-      success: function(res) {}
+      success: function (res) {
+        console.log('setCart getOrderINfo')
+        that.getOrderInfo()
+      }
     });
   },
 
-  getOrderInfo: function() {
+  getOrderInfo: function () {
     var that = this;
     let _goods = [{
       id: that.data.goodsId,
@@ -246,14 +309,16 @@ Page({
     }]
     var _data = {
       type: 'cart',
-      goods: JSON.stringify(_goods)
+      goods: JSON.stringify(_goods),
+      storeId: that.data.storeInfo ?  that.data.storeInfo.id : 0,
+      promotionId: that.data.promotionId
     };
     wx.request({
       url: app.buildUrl("/order/info"),
       header: app.getRequestHeader(),
       method: 'POST',
       data: _data,
-      success: function(res) {
+      success: function (res) {
         var resp = res.data;
         if (resp.code != 200) {
           app.alert({
@@ -264,16 +329,57 @@ Page({
 
         console.log(' resp.data.default_address', resp.data.default_address)
 
+        let promotionId = resp.data.promotionId;
+        let promotionList = null
+        if (promotionId == 1) {
+            promotionList = [{
+                id: 1,
+                desc: '满30-30元'
+              },
+              {
+                id: 2,
+                desc: '满70-40元'
+              }, {
+                id: 3,
+                desc: '满110-60元'
+              }
+            ]
+        } else if (promotionId == 2){
+            promotionList =  [{
+              id: 4,
+              desc: '免运费'
+            }, {
+              id: 5,
+              desc: '满两双-10元'
+            }, {
+              id: 6,
+              desc: '满三双-20元'
+            }]
+        }
+
         that.setData({
           goods_list: resp.data.food_list,
           default_address: resp.data.default_address,
           yun_price: resp.data.yun_price,
           pay_price: resp.data.pay_price,
+          discount: resp.data.discount,
           total_price: resp.data.total_price,
+          promotionList: promotionList,
+          promotionId: promotionId
         });
 
         if (that.data.default_address) {
+          console.log('that.data.default_address',that.data.default_address)
+          let province_str = that.data.default_address.province_str;
+          let city_str = that.data.default_address.city_str;
+          
+          let currentStoreIdx = _.findIndex(that.data.storeList, item => {
+            return item.area.indexOf(city_str) > -1 || item.area.indexOf(province_str) > -1
+          })
+          console.log('currentStoreIdx', currentStoreIdx)
+
           that.setData({
+            storeInfo: currentStoreIdx > -1 ?that.data.storeList[currentStoreIdx] : null, 
             express_address_id: that.data.default_address.id
           });
         }
@@ -281,7 +387,7 @@ Page({
     });
   },
   // 生成订单
-  createOrder: function(e) {
+  createOrder: function (e) {
     wx.showLoading();
     var that = this;
     let _goods = [{
@@ -289,17 +395,24 @@ Page({
       price: that.data.price,
       number: that.data.number
     }]
+    // if (!that.data.default_address || !that.data.default_address.id) {
+    //   app.alert({
+    //     "content": '请选择收货地址'
+    //   });
+    // }
     var data = {
       type: 'cart',
       goods: JSON.stringify(_goods),
-      express_address_id: that.data.default_address.id
+      express_address_id: that.data.default_address.id,
+      storeId: that.data.storeInfo ?  that.data.storeInfo.id : 0,
+      promotionId: that.data.promotionId
     };
     wx.request({
       url: app.buildUrl("/order/create"),
       header: app.getRequestHeader(),
       method: 'POST',
       data: data,
-      success: function(res) {
+      success: function (res) {
         wx.hideLoading();
         var resp = res.data;
         if (resp.code != 200) {
@@ -315,7 +428,7 @@ Page({
     });
   },
   // 去下单
-  toPayOrder: function() {
+  toPayOrder: function () {
     this.createOrder()
   }
 })

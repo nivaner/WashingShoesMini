@@ -1,6 +1,24 @@
 //app.js
+
+
 App({
   onLaunch: function () {
+    Object.assign(global, {
+      Array : Array,
+      Date : Date,
+      Error : Error,
+      Function : Function,
+      Math : Math,
+      Object : Object,
+      RegExp : RegExp,
+      String : String,
+      TypeError : TypeError,
+      setTimeout : setTimeout,
+      clearTimeout : clearTimeout,
+      setInterval : setInterval,
+      clearInterval : clearInterval
+      });
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -39,6 +57,26 @@ App({
     shopName: "大象洗鞋",
     domain: "http://127.0.0.1:8999/api"
   },
+  tip:function( params ){
+    var that = this;
+    var title = params.hasOwnProperty('title')?params['title']:'编程浪子提示您';
+    var content = params.hasOwnProperty('content')?params['content']:'';
+    wx.showModal({
+        title: title,
+        content: content,
+        success: function(res) {
+            if ( res.confirm ) {//点击确定
+                if( params.hasOwnProperty('cb_confirm') && typeof( params.cb_confirm ) == "function" ){
+                    params.cb_confirm();
+                }
+            }else{//点击否
+                if( params.hasOwnProperty('cb_cancel') && typeof( params.cb_cancel ) == "function" ){
+                    params.cb_cancel();
+                }
+            }
+        }
+    })
+},
   buildUrl: function (path, params) {
     var url = this.globalData.domain + path;
     var _paramUrl = "";

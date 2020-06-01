@@ -1,136 +1,160 @@
 <!--pages/buy/buy.wxml-->
 <view class="container">
-  <view class="bg-white padding">
-    <view class="flex justify-between" bindtap='chooseAddress'>
-      <view>
-        <text class="cuIcon-locationfill text-orange"></text>
-        <text>{{default_address.name}}</text>
-      </view>
-      <view>
-        <text>{{default_address.mobile}}</text>
-        <text class="cuIcon-right"></text>
-      </view>
-    </view>
-    <!-- <view class="text-df">
+	<view wx:if="{{default_address}}" class="bg-white padding">
+		<view bindtap='chooseAddress'>
+			<view class="flex justify-between">
+				<view>
+					<text class="cuIcon-locationfill text-orange"></text>
+					<text>{{default_address.name}}</text>
+				</view>
+				<view>
+					<text>{{default_address.mobile}}</text>
+					<text class="cuIcon-right"></text>
+				</view>
+			</view>
+			<!-- <view class="text-df">
       <text>上海市</text>
     </view> -->
-    <view class="text-df">
-      {{default_address.address}}
-    </view>
-  </view>
+			<view class="text-df">
+				{{default_address.address}}
+			</view>
+		</view>
+	</view>
+	<view wx:else bindtap='chooseAddress' class="bg-white padding text-md text-red">
+		点击选择取件地址
+	</view>
 
-  <view class="bg-white margin-tb padding">
-    <view class="flex justify-between align-center">
-      <view class="text-black text-lg">洗鞋单价</view>
-      <view class="flex text-xxl">
-        <view class="text-price text-xxl">{{price}}</view>
-      </view>
-    </view>
-    <view class="flex justify-between align-center padding-top">
-      <view class="text-lg text-black">数量（双）</view>
-      <view class="flex align-center">
-        <button class="cu-btn icon" bindtap="minusNum">
-          <text class="cuIcon-move"></text>
-        </button>
-        <view class="padding-lr text-black text-xl">{{number}}</view>
-        <button class="cu-btn icon bg-blue " bindtap="addNum">
-          <text class="cuIcon-add "></text>
-        </button>
-      </view>
-    </view>
-  </view>
+	<view class="bg-white margin-top padding text-black">
+		<view class="flex justify-between ">
+			<view class="text-xl">
+				{{storeInfo.name}}
+			</view>
+			<view class="text-xl">
+				{{storeInfo.mobile}}
+			</view>
+		</view>
+		<view>
+			{{storeInfo.address}}
+		</view>
+	</view>
 
-  <view class="bg-white margin-tb padding ">
-    <view class="flex justify-between align-center">
-      <view class="text-black text-lg">促销</view>
-      <view class="flex text-df">
-        <view class="bg-red text-sm light padding-xs" wx:for="{{promotionList}}">
+	<view class="bg-white margin-tb padding">
+		<view class="flex justify-between align-center">
+			<view class="text-black text-lg">洗鞋单价</view>
+			<view class="flex text-xxl">
+				<view class="text-price text-xxl">{{price}}</view>
+			</view>
+		</view>
+		<view class="flex justify-between align-center padding-top">
+			<view class="text-lg text-black">数量（双）</view>
+			<view class="flex align-center">
+				<button class="cu-btn icon" bindtap="minusNum">
+					<text class="cuIcon-move"></text>
+				</button>
+				<view class="padding-lr text-black text-xl">{{number}}</view>
+				<button class="cu-btn icon bg-blue " bindtap="addNum">
+					<text class="cuIcon-add "></text>
+				</button>
+			</view>
+		</view>
+	</view>
 
-          <view class="text-Abc">
-            {{item.desc}}
-          </view>
-
-          <!-- <view class="text-Abc">
+	<view class="bg-white margin-tb padding " wx:if="{{promotionList}}">
+		<view class="flex justify-between align-center">
+			<view class="text-black text-lg">促销</view>
+			<view class="flex text-df">
+				<view class="bg-red text-sm light padding-xs" wx:for="{{promotionList}}">
+					<view class="text-Abc">
+						{{item.desc}}
+					</view>
+					<!-- <view class="text-Abc">
             2双减3元
           </view> -->
-        </view>
-      </view>
-    </view>
-  </view>
+				</view>
+			</view>
+		</view>
+	</view>
 
-  <form>
-    <view class="margin-bottom bg-gray"></view>
-    <view class="cu-form-group">
-      <view class="title">商品金额</view>
-      <view class="text-price">{{pay_price}}</view>
-    </view>
-    <view class="cu-form-group">
-      <view class="title">运费（往返）</view>
-      <view class="text-price">{{yun_price}}</view>
-    </view>
-    <view class="cu-form-group">
-      <view class="title">促销包邮</view>
-      <view class="text-red">-
-        <text class="text-price">{{yun_price}}</text> </view>
-    </view>
-    <view class="cu-form-group">
-      <view class="title">折扣</view>
-      <view class="text-red">-
-        <text class="text-price">{{discount}}</text> </view>
-    </view>
-    <view class="margin-bottom"></view>
-  </form>
+	<form>
+		<view class="margin-bottom bg-gray"></view>
+		<view class="cu-form-group">
+			<view class="title">商品金额</view>
+			<view class="text-price">{{pay_price}}</view>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">运费（店家寄回）</view>
+			<view class="text-price">{{yun_price}}</view>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">促销包邮</view>
+			<view class="text-red">-
+				<text class="text-price">{{yun_price}}</text> </view>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">折扣</view>
+			<view class="text-red">-
+				<text class="text-price">{{discount}}</text> </view>
+		</view>
+		<view class="margin-bottom"></view>
+	</form>
 
-  <view class="bg-white margin-tb padding ">
-    <view class="flex justify-between align-center">
-      <view class="text-black text-xxl">总计</view>
-      <view class="flex text-df">
-        <view class="text-price text-xxl text-black">
-          {{total_price}}
-        </view>
-      </view>
-    </view>
-  </view>
+	<view class="bg-white margin-tb padding ">
+		<view class="flex justify-between align-center">
+			<view class="text-black text-xxl">总计</view>
+			<view class="flex text-df">
+				<view class="text-price text-xxl text-black">
+					{{total_price}}
+				</view>
+			</view>
+		</view>
+	</view>
 
-  <view class="bg-white padding">
-    <view class="text-sm">
-      <view>买家须知：</view>
-      <view class="padding-tb-sm">1.基础洗护服务内容：整体清洁，干燥杀菌，专用包装</view>
-      <view class="">2.以下鞋子不在洗护范围；雪地靴；带电子元件的鞋；严重破损（开胶、破洞、断底、粉化、爆漆等）；严重褪色或染色的鞋。</view>
-      <view class="padding-tb-sm">3.寄件时请勿使用原装鞋盒及配件（如掉包扣，鞋撑等）。鞋子洗后将用定制包装寄回。原盒配件恕不退回</view>
-      <view class="">4.请寄送整双鞋子。</view>
-    </view>
-  </view>
+	<view class="bg-white padding">
+		<view class="text-md">
+			<view class="text-red text-md">买家须知：</view>
+			<view class="padding-tb-sm">1.基础洗护服务内容：整体清洁，干燥杀菌，专用包装</view>
+			<view class="">2.以下鞋子不在洗护范围；雪地靴；带电子元件的鞋；严重破损（开胶、破洞、断底、粉化、爆漆等）；严重褪色或染色的鞋。</view>
+			<view class="padding-tb-sm">3.支持所有快递，并填写正确的运单号，如因填写错误导致包裹丢失，平台不负责丢失包裹的赔偿
+			</view>
+			<view >
+				4. 随鞋请附带一张纸条写明您的微信号名字及电话地址，方便及时联系
+			</view>
+			<view class="padding-tb-sm">5. 请不要寄到付件，到付件一律拒收</view>
+			<view >6.请寄送整双鞋子。</view>
+			<view>
+			</view>
+		</view>
+	</view>
 
-  <!-- <view>
+	<!-- <view>
     <view></view>
     <button>提交订单</button>
   </view> -->
 </view>
 
 <view class="cu-bar tabbar  bg-white shadow foot">
-  <view class="action text-gray" bindtap="toHome">
-    <view class="cuIcon-homefill"></view> 首页
-  </view>
-  <!-- <view class="action text-gray">
+	<view class="action text-gray" bindtap="toHome">
+		<view class="cuIcon-homefill"></view> 首页
+	</view>
+	<!-- <view class="action text-gray">
     <view class="cuIcon-similar"></view> 订单
   </view> -->
-  <view class="action text-blue add-action" bindtap="toPayOrder">
-    <button class="cu-btn cuIcon-cart bg-blue shadow">
-      <view class="cu-tag badge ">{{number}}</view>
-    </button>
-    下单
-  </view>
-  <!-- <view class="action text-gray">
+	<view class="action text-blue add-action" bindtap="toPayOrder">
+		<button class="cu-btn cuIcon-cart bg-blue shadow">
+			<view class="cu-tag badge ">{{number}}</view>
+		</button>
+		下单
+	</view>
+	<!-- <view class="action text-gray">
     <view class="cuIcon-cart">
       <view class="cu-tag badge">99</view>
     </view>
     购物车
   </view> -->
-  <view class="action text-gray" bindtap="toMe">
-    <view class="cuIcon-my">
-      <view class="cu-tag badge"></view>
-    </view>
-    我的
-  </view>
+	<view class="action text-gray" bindtap="toMe">
+		<view class="cuIcon-my">
+			<view class="cu-tag badge"></view>
+		</view>
+		我的
+	</view>
 </view>
